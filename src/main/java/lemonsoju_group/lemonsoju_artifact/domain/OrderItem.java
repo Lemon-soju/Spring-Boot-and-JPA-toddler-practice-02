@@ -1,6 +1,7 @@
 package lemonsoju_group.lemonsoju_artifact.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lemonsoju_group.lemonsoju_artifact.domain.item.Item;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -24,6 +25,7 @@ public class OrderItem {
     @JoinColumn(name = "item_id")
     private Item item;
 
+    @JsonIgnore
     @ManyToOne(fetch =  LAZY)
     @JoinColumn(name = "order_id") // foreign 키
     private Order order;
