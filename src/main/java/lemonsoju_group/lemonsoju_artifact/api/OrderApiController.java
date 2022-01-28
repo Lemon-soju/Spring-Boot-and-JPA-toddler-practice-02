@@ -10,6 +10,7 @@ import lemonsoju_group.lemonsoju_artifact.repository.order.query.OrderFlatDto;
 import lemonsoju_group.lemonsoju_artifact.repository.order.query.OrderItemQueryDto;
 import lemonsoju_group.lemonsoju_artifact.repository.order.query.OrderQueryDto;
 import lemonsoju_group.lemonsoju_artifact.repository.order.query.OrderQueryRepository;
+import lemonsoju_group.lemonsoju_artifact.service.query.OrderQueryService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -51,14 +52,11 @@ public class OrderApiController {
         return collect;
     }
 
-    @GetMapping("/api/v3/orders")
-    public List<OrderDto> ordersV3(){
-        List<Order> orders = orderRepository.findAllWithItem();
-        List<OrderDto> collect = orders.stream()
-                .map(o -> new OrderDto(o))
-                .collect(toList());
+    private final OrderQueryService orderQueryService;
 
-        return collect;
+    @GetMapping("/api/v3/orders")
+    public List<lemonsoju_group.lemonsoju_artifact.service.query.OrderDto> ordersV3(){
+        return orderQueryService.ordersV3();
     }
 
 
