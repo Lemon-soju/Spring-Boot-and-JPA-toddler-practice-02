@@ -5,10 +5,7 @@ import lemonsoju_group.lemonsoju_artifact.domain.Member;
 import lemonsoju_group.lemonsoju_artifact.domain.Order;
 import lemonsoju_group.lemonsoju_artifact.domain.OrderItem;
 import lemonsoju_group.lemonsoju_artifact.domain.item.Item;
-import lemonsoju_group.lemonsoju_artifact.repository.ItemRepository;
-import lemonsoju_group.lemonsoju_artifact.repository.MemberRepository;
-import lemonsoju_group.lemonsoju_artifact.repository.OrderRepository;
-import lemonsoju_group.lemonsoju_artifact.repository.OrderSearch;
+import lemonsoju_group.lemonsoju_artifact.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,7 +29,7 @@ public class OrderService {
     public Long order(Long memberId, Long itemId, int count){
 
         //엔티티 조회
-        Member member = memberRepository.findOne(memberId);
+        Member member = memberRepository.findById(memberId).get();
         Item item = itemRepository.findOne(itemId);
 
         //배송정보 생성
